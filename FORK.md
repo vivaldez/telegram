@@ -11,7 +11,7 @@ que los parches **sobrevivan a reinstalaciones**: se instalan desde esta carpeta
 |---|---|---|
 | `src/bridge.ts` + `lib/bridge.js` | `ensureChat` crea una sesión nueva (`telegram:<chat>:<epoch>`, igual que `/new`) con timeout de 45 s | Reanudar un id de sesión ya existente dejaba `ctx.agents.create` colgado: el bucle moría y el bot no respondía hasta reiniciar |
 | `src/bridge.ts` + `lib/bridge.js` | Timeout de 120 s por update | Un update atascado ya no puede detener el long polling |
-| `src/bridge.ts` + `lib/bridge.js` | Log de diagnóstico en `<perfil>/telegram-debug.log` | El logger del runtime no es visible desde la app de escritorio |
+| `src/bridge.ts` + `lib/bridge.js` | Log de diagnóstico en `%USERPROFILE%\.dsh\telegram-debug.log` (`DSH_TELEGRAM_DEBUG_LOG` lo cambia) | El logger del runtime no es visible desde la app de escritorio |
 | `src/client.ts` + `lib/client.js` | `AbortSignal.timeout(120000)` por llamada a la Bot API | Un socket colgado falla y se reintenta en vez de congelar el bucle |
 | `src/index.ts` + `lib/index.js` | Opción de config `cwd` (vacía = `process.cwd()`) | Los agentes de Telegram trabajan en el workspace, no en el directorio del perfil |
 | `package.json` | versión `0.1.1`; peers alineados con el runtime `0.2.1-rc.3` / `cordis 4.0.5` / `schemastery 3.18.5` | Evita depender de la exención de compatibilidad de DSH |
